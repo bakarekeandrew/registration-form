@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    {% load crispy_forms_tags %}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  body{
+    background: linear-gradient(
+       105deg,
+       #ee88a5 ,
+       #730a70
+   );
+  }
+  
+  .wrapper{
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    display: flex;
+  }
+
+  .container {
+    margin-top: 10px;
+  }
+  
+  .registration_form{
+    border-radius: 5px;
+    width: 400px;
+    background: white;
+    /* padding: 25px; */
+    overflow: hidden;
+  }
+  
+  .registration_form .title{
+    width: 100%;
+    color: white;
+    background:rgb(13, 98, 215);
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 25px;
+    text-transform: uppercase;
+    padding: 15px;
+  }
+  
+  .form_wrap{
+    width: 100%;
+    padding: 15px;
+  }
+  
+  /* Submit Button */
+  .form_wrap .submit_btn{
+    font-size:17px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    width: 100%;
+    background: #0d6ad7;
+    padding: 10px;
+    border: 0;
+    color:white;
+    margin-top: 20px;
+  }
+  
+  /* Button Hover effect */
+  .form_wrap .submit_btn:hover{
+    background: #051c94;
+  }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="registration_form">
+       <!-- Title -->
+         <div class="title">
+           Registration Form
+         </div>
+       
+
+         <div class="container">
+          <div class="row">
+            <div class="col-lg">
+              {% if messages %} <!-- if we have any messages -->
+                {% for message in messages %} <!-- loop through them -->
+                  <div class="alert alert-{{message.tags}}">
+                    {{ message }} <!-- display each message -->
+                  </div>
+                {% endfor %} 
+              {% endif %}
+            </div>
+          </div>
+         </div>
+
+       <!-- Form -->
+        <form method="post" action="">
+          {% csrf_token %}
+          <div class="form_wrap">
+            <!-- add the form and design them with bootstrap -->
+            {{ form|crispy }} <!-- only this line adds bootstrap -->
+            <!-- Submit button -->
+              <div class="input_wrap">
+                <input type="submit" value="Register Now" class="submit_btn">
+              </div>
+          </div>
+       </form>
+       </div>
+       </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
